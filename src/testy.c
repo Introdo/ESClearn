@@ -7,6 +7,7 @@ int main(void)
 	while(true)
 	{
 		BeginFrame();
+		ClearTui(BLACK,TERMWHITE);
 		EndFrame();
 	}
 
