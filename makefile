@@ -10,14 +10,14 @@ OUT := $(BIN_DIR)/$(TARGET)
 CC := gcc
 
 CFLAGS := \
-    -std=c99 \
-    -Wall \
-    -Wextra \
-    -D_POSIX_C_SOURCE=200809L \
-    -O2 \
-    -I$(LIB_DIR)/include 
+	-std=c99 \
+	-Wall \
+	-Wextra \
+	-D_POSIX_C_SOURCE=200809L \
+	-O2 \
+	-I$(LIB_DIR)/include 
 
-LDFLAGS := -L$(LIB_DIR)
+LDFLAGS := -L$(LIB_DIR) -lm
 LIBS := $(wildcard $(LIB_DIR)/*.a)
 
 SRC := $(shell find $(SRC_DIR) -name "*.c")
@@ -31,12 +31,12 @@ MAKEFLAGS += --no-builtin-rules
 build: $(OUT)
 
 $(OUT): $(OBJ)
-    @mkdir -p $(BIN_DIR)
-    $(CC) $(OBJ) $(LIBS) $(LDFLAGS) -o $@
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(OBJ) $(LIBS) $(LDFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-    @mkdir -p $(@D)
-    $(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    rm -rf $(OBJ_DIR) $(BIN_DIR) build
+	rm -rf $(OBJ_DIR) $(BIN_DIR) build
