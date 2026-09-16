@@ -15,7 +15,7 @@ CFLAGS := \
     -Wextra \
     -D_POSIX_C_SOURCE=200809L \
     -O2 \
-    -I$(LIB_DIR)/include \
+    -I$(LIB_DIR)/include 
 
 LDFLAGS := -L$(LIB_DIR)
 LIBS := $(wildcard $(LIB_DIR)/*.a)
